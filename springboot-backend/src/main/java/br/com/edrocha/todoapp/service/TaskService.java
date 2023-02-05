@@ -1,6 +1,8 @@
 package br.com.edrocha.todoapp.service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +36,11 @@ public class TaskService {
 		return taskAdapter.adapt(taskRepository.findAll());	
 	}
 	
+	public TaskResp findById(String id){
+	Task task = taskRepository.findById(id).orElse(null);
+		return taskAdapter.adapt(task);	
+	}
+	
 	public void save(TaskReq req) {
 		try {
 			Task task = taskReqAdapter.adapt(req);
@@ -46,23 +53,35 @@ public class TaskService {
 	
 	public void update(TaskReq req) {
 		try {
-			Task task = taskReqAdapter.adapt(req);
+			Task task = taskRepository.findById(req.getIdTask()).orElse(null);
+			if(task != null) {
+			task.setNameTask(req.getNameTask());
+			task.setDescriptionTask(req.getDescriptionTask());
+			task.setDateTask(parseDate(req.getDateTask()));
 			taskRepository.save(task);
+			}
 		} catch (Exception e) {
 			logger.error("Problemas ao atualizar a tarefa.", e);
 		}
 		
 	}
 	
-	public void delete(TaskReq req) {
+	public void delete(String id) {
 		try {
-			Task task = taskReqAdapter.adapt(req);
-			taskRepository.delete(task);
+		String idRefactor = id.replace("=", "");
+			taskRepository.deleteById(idRefactor);
 		} catch (Exception e) {
 			logger.error("Problemas ao excluir a tarefa.", e);
 		}
 	}
 
-	
+	private LocalDate parseDate(String date) {
+		int day = Integer.parseInt(date.substring(0, 2));
+		int month = Integer.parseInt(date.substring(4, 5));
+		int year = Integer.parseInt(date.substring(6, 10));
+		LocalDate ld = LocalDate.of(year,month,day);
+		return ld;
+		
+	}
 
 }

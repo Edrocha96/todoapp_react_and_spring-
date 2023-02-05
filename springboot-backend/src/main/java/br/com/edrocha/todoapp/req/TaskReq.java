@@ -1,7 +1,5 @@
 package br.com.edrocha.todoapp.req;
 
-import java.util.Date;
-
 import br.com.edrocha.todoapp.entity.Adaptable;
 import br.com.edrocha.todoapp.entity.IRequest;
 import lombok.AllArgsConstructor;
@@ -21,5 +19,5 @@ public class TaskReq implements IRequest, Adaptable{
 
 	private String descriptionTask;
 
-	private Date dateTask;
+	private String dateTask;
 }
