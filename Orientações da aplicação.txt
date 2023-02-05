@@ -1,0 +1,13 @@
+Orientações:
+
+Link do projeto no GIT: https://github.com/Edrocha96/todoapp_react_and_spring-.git
+
+Aplicação configurada com banco de dados H2 o mesmo já está configurado no aplication.properties:
+url: jdbc:h2: mem:testdb
+driverClassName: org.h2.Driver
+username: sa
+password: password
+
+Script de carga de dados para base está localizado: springboot-backend\src\main\resources\database.sql
+(a utlização do mesmo não é obrigatória para o funcionamento da aplicação,
+ a tabela é criada automaticamente após o start da aplicação e apagada toda vez a aplicação é parada ou reiniciada).
