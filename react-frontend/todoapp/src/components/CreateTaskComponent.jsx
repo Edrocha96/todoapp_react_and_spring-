@@ -16,6 +16,7 @@ class CreateTaskComponent extends Component {
         this.changeNameTaskHandler = this.changeNameTaskHandler.bind(this);
         this.changeDescriptionTaskHandler = this.changeDescriptionTaskHandler.bind(this);
         this.saveOrUpdateTask = this.saveOrUpdateTask.bind(this);
+        document.body.style.backgroundColor = "#282c34";
     }
 
     // step 3
