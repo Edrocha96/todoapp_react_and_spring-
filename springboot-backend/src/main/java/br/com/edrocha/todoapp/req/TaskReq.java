@@ -20,4 +20,6 @@ public class TaskReq implements IRequest, Adaptable{
 	private String descriptionTask;
 
 	private String dateTask;
+	
+	private String hourTask;
 }

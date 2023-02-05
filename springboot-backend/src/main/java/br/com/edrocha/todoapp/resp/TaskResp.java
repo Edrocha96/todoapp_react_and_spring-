@@ -20,6 +20,7 @@ public class TaskResp implements IRequest, Adaptable{
 	public String descriptionTask;
 
 	public String dateTask;
-
+	
+	public String hourTask;
 	
 }

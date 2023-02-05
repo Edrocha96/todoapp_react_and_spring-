@@ -1,6 +1,7 @@
 package br.com.edrocha.todoapp.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +39,7 @@ public class TaskService {
 	
 	public TaskResp findById(String id){
 	Task task = taskRepository.findById(id).orElse(null);
-		return taskAdapter.adapt(task);	
+		return taskAdapter.adaptForTime(task);
 	}
 	
 	public void save(TaskReq req) {
@@ -57,7 +58,7 @@ public class TaskService {
 			if(task != null) {
 			task.setNameTask(req.getNameTask());
 			task.setDescriptionTask(req.getDescriptionTask());
-			task.setDateTask(parseDate(req.getDateTask()));
+			task.setDateTask(parseDate(req.getDateTask(), req.getHourTask()));
 			taskRepository.save(task);
 			}
 		} catch (Exception e) {
@@ -75,11 +76,13 @@ public class TaskService {
 		}
 	}
 
-	private LocalDate parseDate(String date) {
+	private LocalDateTime parseDate(String date, String hora) {
 		int day = Integer.parseInt(date.substring(0, 2));
 		int month = Integer.parseInt(date.substring(4, 5));
 		int year = Integer.parseInt(date.substring(6, 10));
-		LocalDate ld = LocalDate.of(year,month,day);
+		int hour = Integer.parseInt(hora.substring(0, 2));
+		int minute = Integer.parseInt(hora.substring(3, 5));
+		LocalDateTime ld = LocalDateTime.of(year, month, day, hour, minute);
 		return ld;
 		
 	}

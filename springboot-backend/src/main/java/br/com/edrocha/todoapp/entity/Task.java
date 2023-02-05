@@ -1,7 +1,6 @@
 package br.com.edrocha.todoapp.entity;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,5 +35,5 @@ public class Task implements Adaptable{
 	private String descriptionTask;
 	
 	@Column(name = "DATE_TASK")
-	private LocalDate dateTask;
+	private LocalDateTime dateTask;
 }

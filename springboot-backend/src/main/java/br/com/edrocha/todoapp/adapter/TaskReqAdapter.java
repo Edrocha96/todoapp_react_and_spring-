@@ -1,6 +1,5 @@
 package br.com.edrocha.todoapp.adapter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Component;
@@ -17,7 +16,7 @@ public class TaskReqAdapter implements IDefaultAdapter<TaskReq, Task>{
 			 idTask(generateId()).
 			 nameTask(req.getNameTask()).
 			 descriptionTask(req.getDescriptionTask()).
-			 dateTask(parseDate(req.getDateTask())).build();
+			 dateTask(parseDate(req.getDateTask(), req.getHourTask())).build();
 	}
 
 	private static String generateId() {
@@ -33,11 +32,13 @@ public class TaskReqAdapter implements IDefaultAdapter<TaskReq, Task>{
 		
 	}
 	
-	private LocalDate parseDate(String date) {
+	private LocalDateTime parseDate(String date, String hora) {
 		int day = Integer.parseInt(date.substring(0, 2));
 		int month = Integer.parseInt(date.substring(4, 5));
 		int year = Integer.parseInt(date.substring(6, 10));
-		LocalDate ld = LocalDate.of(year,month,day);
+		int hour = Integer.parseInt(hora.substring(0, 2));
+		int minute = Integer.parseInt(hora.substring(4, 5));
+		LocalDateTime ld = LocalDateTime.of(year, month, day, hour, minute);
 		return ld;
 		
 	}
