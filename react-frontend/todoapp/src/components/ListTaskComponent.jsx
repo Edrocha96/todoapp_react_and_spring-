@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import TaskService from '../service/TaskService'
-import {useNavigate} from 'react-router-dom';
 
 class ListTaskComponent extends Component{
     constructor(props) {
@@ -14,9 +13,10 @@ class ListTaskComponent extends Component{
         this.deleteTask = this.deleteTask.bind(this);
     }
 
-    deleteTask(id){
-        TaskService.deleteTask(id).then( res => {
-            this.setState({task: this.state.task.filter(task => task.id !== id)});
+    deleteTask(idTask){
+        TaskService.deleteTask(idTask).then( res => {
+            this.setState({task: this.state.task.filter(task => task.idTask !== idTask)});
+            console.log("taskIdD", idTask)
         });
     }
     viewTask(id){
@@ -33,9 +33,7 @@ class ListTaskComponent extends Component{
     }
 
     addTask(){
-        console.log("add task")
-        console.log("Link", this.props.history)
-        this.props.history.push("/add-task");
+        this.props.history.push('/add-task/_add');
     }
 
 
@@ -49,7 +47,6 @@ class ListTaskComponent extends Component{
                  <br></br>
                  <div className = "row">
                         <table className = "table table-striped table-bordered">
-
                             <thead>
                                 <tr>
                                     <th> Nome Tarefa</th>
@@ -83,4 +80,4 @@ class ListTaskComponent extends Component{
 
 }
 
-export default ListTaskComponent
+export default ListTaskComponent;

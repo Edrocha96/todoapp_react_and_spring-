@@ -14,15 +14,18 @@ class TaskService {
     }
 
     getTaskById(taskId){
-        return axios.get(TASK_API_BASE_URL + '/' + taskId);
+        console.log("taskId", taskId)
+        return axios.get(TASK_API_BASE_URL + '/by-id-registers/' + taskId);
     }
 
-    updateTask(task, taskId){
-        return axios.put(TASK_API_BASE_URL + '/' + taskId, task);
+    updateTask(task){
+        console.log("taskId", task)
+        return axios.post(TASK_API_BASE_URL + '/update-task',  task);
     }
 
     deleteTask(taskId){
-        return axios.delete(TASK_API_BASE_URL + '/' + taskId);
+        console.log("taskId", taskId)
+        return axios.post(TASK_API_BASE_URL + '/delete-task', taskId);
     }
 
 }
