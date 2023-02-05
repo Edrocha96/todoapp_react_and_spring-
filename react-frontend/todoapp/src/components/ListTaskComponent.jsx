@@ -1,80 +1,91 @@
 import React, { Component } from 'react'
 import TaskService from '../service/TaskService'
 
-class ListTaskComponent extends Component{
+class ListTaskComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-                task: []
+            task: []
         }
         this.addTask = this.addTask.bind(this);
         this.editTask = this.editTask.bind(this);
         this.deleteTask = this.deleteTask.bind(this);
+        document.body.style.backgroundColor = "#282c34";
     }
 
-    deleteTask(idTask){
-        TaskService.deleteTask(idTask).then( res => {
-            this.setState({task: this.state.task.filter(task => task.idTask !== idTask)});
+    deleteTask(idTask) {
+        TaskService.deleteTask(idTask).then(res => {
+            this.setState({ task: this.state.task.filter(task => task.idTask !== idTask) });
             console.log("taskIdD", idTask)
         });
     }
-    viewTask(id){
+    viewTask(id) {
         this.props.history.push(`/view-task/${id}`);
     }
-    editTask(id){
+    editTask(id) {
         this.props.history.push(`/add-task/${id}`);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         TaskService.getTask().then((res) => {
-            this.setState({ task: res.data});
+            this.setState({ task: res.data });
         });
     }
 
-    addTask(){
+    addTask() {
         this.props.history.push('/add-task/_add');
     }
 
+    getTitle() {
+        return <h3 className="text-center style-title">Minhas Tarefas</h3>
 
+    }
     render() {
         return (
             <div>
-                 <h2 className="text-center">Minhas Tarefas</h2>
-                 <div className = "row">
-                    <button className="btn btn-primary" onClick={this.addTask}> Adicionar Tarefa</button>
-                 </div>
-                 <br></br>
-                 <div className = "row">
-                        <table className = "table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th> Nome Tarefa</th>
-                                    <th> Descrição Tarefa</th>
-                                    <th> Data Tarefa</th>
-                                    <th> Ações</th>
-                                </tr>
-                            </thead>
-                            { <tbody>
-                                {
-                                    this.state.task.map(
-                                        task => 
-                                        <tr key = {task.idTask}>
-                                             <td> {task.nameTask} </td>   
-                                             <td> {task.descriptionTask}</td>
-                                             <td> {task.dateTask}</td>
-                                             <td>
-                                                 <button onClick={ () => this.editTask(task.idTask)} className="btn btn-info">Atualizar </button>
-                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.deleteTask(task.idTask)} className="btn btn-danger">Excluir</button>
-                                                 {/* <button style={{marginLeft: "10px"}} onClick={ () => this.viewTask(task.idTask)} className="btn btn-info">Detalhes</button> */}
-                                             </td>
+                <br></br>
+                <br></br>
+                <div className="card col-md-12">
+                    <br></br>
+                    {
+                        this.getTitle()
+                    }
+                    <table className="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th> Nome Tarefa</th>
+                                <th> Descrição Tarefa</th>
+                                <th> Data Tarefa</th>
+                                <th> Ações</th>
+                            </tr>
+                        </thead>
+                        {<tbody>
+                            {
+                                this.state.task.map(
+                                    task =>
+                                        <tr key={task.idTask}>
+                                            <td> {task.nameTask} </td>
+                                            <td> {task.descriptionTask}</td>
+                                            <td> {task.dateTask}</td>
+                                            <td>
+                                                <button onClick={() => this.editTask(task.idTask)} className="btn btn-info style-button-atualizar">Atualizar </button>
+                                                <button style={{ marginLeft: "10px" }} onClick={() => this.deleteTask(task.idTask)} className="btn btn-danger style-button-excluir">Excluir</button>
+                                            </td>
                                         </tr>
-                                    )
-                                }
-                            </tbody>}
-                        </table>
-                 </div>
+                                )
+                            }
+                        </tbody>}
+                    </table>
+                    <br></br>
+                    <div className="align-button">
+                        <button className="btn btn-info style-button-cadastrar" onClick={this.addTask}> Cadastrar Tarefa</button>
+                    </div>
+                    <br></br>
+                </div>
+
             </div>
+
         )
     }
 

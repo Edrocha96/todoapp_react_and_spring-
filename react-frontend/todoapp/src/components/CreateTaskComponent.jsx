@@ -10,7 +10,8 @@ class CreateTaskComponent extends Component {
             id: this.props.match.params.id,
             nameTask: '',
             descriptionTask: '',
-            dateTask: ''
+            dateTask: '',
+            hourTask:''
         }
         this.changeNameTaskHandler = this.changeNameTaskHandler.bind(this);
         this.changeDescriptionTaskHandler = this.changeDescriptionTaskHandler.bind(this);
@@ -30,7 +31,8 @@ class CreateTaskComponent extends Component {
                 this.setState({
                     nameTask: task.nameTask,
                     descriptionTask: task.descriptionTask,
-                    dateTask: task.dateTask
+                    dateTask: task.dateTask,
+                    hourTask: task.hourTask
                 });
             });
         }
@@ -38,7 +40,7 @@ class CreateTaskComponent extends Component {
 
     saveOrUpdateTask = (e) => {
         e.preventDefault();
-        let task = { nameTask: this.state.nameTask, descriptionTask: this.state.descriptionTask, dateTask: this.state.dateTask };
+        let task = { nameTask: this.state.nameTask, descriptionTask: this.state.descriptionTask, dateTask: this.state.dateTask, hourTask: this.state.hourTask };
         console.log('task => ' + JSON.stringify(task));
 
         // step 5
@@ -47,7 +49,7 @@ class CreateTaskComponent extends Component {
                 this.props.history.push('/task');
             });
         } else {
-            let updateTask = {idTask: this.state.id, nameTask: this.state.nameTask, descriptionTask: this.state.descriptionTask, dateTask: this.state.dateTask };
+            let updateTask = {idTask: this.state.id, nameTask: this.state.nameTask, descriptionTask: this.state.descriptionTask, dateTask: this.state.dateTask, hourTask: this.state.hourTask };
             TaskService.updateTask(updateTask).then(res => {
                 this.props.history.push('/task');
             });
@@ -67,7 +69,7 @@ class CreateTaskComponent extends Component {
     }
 
     changeTimeHandler = (event) => {
-        this.setState({ timeTask: event.target.value });
+        this.setState({ hourTask: event.target.value });
     }
 
 
@@ -77,9 +79,9 @@ class CreateTaskComponent extends Component {
 
     getTitle() {
         if (this.state.id === '_add') {
-            return <h3 className="text-center">Adicionar Tarefa</h3>
+            return <h3 className="text-center style-title">Adicionar Tarefa</h3>
         } else {
-            return <h3 className="text-center">Atualizar Tarefa</h3>
+            return <h3 className="text-center style-title">Atualizar Tarefa</h3>
         }
     }
 
@@ -132,7 +134,9 @@ class CreateTaskComponent extends Component {
                 <br></br>
                 <div className="container">
                     <div className="row">
+                    <br></br>
                         <div className="card col-md-6 offset-md-3 offset-md-3">
+                            <br></br>
                             {
                                 this.getTitle()
                             }
@@ -157,11 +161,11 @@ class CreateTaskComponent extends Component {
                                     <div className="form-group">
                                         <label> Hora: </label>
                                         <input placeholder="HH:mm" name="dateTask" maxLength="5" className="form-control"
-                                            value={this.state.timeTask} onChange={this.changeTimeHandler} onKeyUp={this.time} />
+                                            value={this.state.hourTask} onChange={this.changeTimeHandler} onKeyUp={this.time} />
                                     </div>
 
-                                    <button className="btn btn-success" onClick={this.saveOrUpdateTask}>Salvar</button>
-                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Cancelar</button>
+                                    <button className="btn btn-info style-button-salvar" onClick={this.saveOrUpdateTask}>Salvar</button>
+                                    <button className="btn btn-danger style-button-cancelar" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Cancelar</button>
                                 </form>
                             </div>}
                         </div>

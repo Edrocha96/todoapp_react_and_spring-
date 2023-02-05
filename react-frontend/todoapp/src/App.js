@@ -18,7 +18,7 @@ function App() {
                       <Route path = "/add-task/:id"  component = {CreateTaskComponent}></Route>
                     </Switch>
                 </div>
-              <FooterComponent/>
+              {/* <FooterComponent/> */}
         </Router>
   );
 }
