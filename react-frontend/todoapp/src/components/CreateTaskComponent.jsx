@@ -96,7 +96,7 @@ class CreateTaskComponent extends Component {
         var len = input.value.length;
 
         if (len !== 1 || len !== 3) {
-            if (e.keyCode   == 47) {
+            if (e.keyCode  === 47) {
                 e.preventDefault();
             }
         }
@@ -118,7 +118,7 @@ class CreateTaskComponent extends Component {
         var len = input.value.length;
 
         if (len !== 1 || len !== 3) {
-            if (e.keyCode  == 47) {
+            if (e.keyCode  === 47) {
                 e.preventDefault();
             }
         }

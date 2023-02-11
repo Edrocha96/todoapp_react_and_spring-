@@ -1,6 +1,35 @@
-Orientações:
+Orientação da entrega:
 
-Link do projeto no GIT: https://github.com/Edrocha96/todoapp_react_and_spring-.git
+1º Etapa - Achei necessario fazer uma refatoração no protótipo, segue em anexo a versão antiga e nova, as telas implementadas em REACT podem ser acessadas logo abaixo no topico "Link do projeto no GIT".
+
+2º Etapa - Os serviços implementados em Spring foram implementados usando o protocolo REST com o banco de dados H2 e podem ser acessadas logo abaixo no topico "Link do projeto no GIT".
+
+3º Etapa - Integração entre React e Spring pode ser acessadas logo abaixo no topico "Link do projeto no GIT".
+
+4º Etapa - Respostas das perguntas logo abaxio:
+
+- Viabilidade da integração da aplicação Kotlin com os web services desenvolvidos em Spring. E o contrário?
+
+R: A integração da aplicação Kotlin com web services desenvolvidos em Spring é viável e pode ser feita de maneira eficiente. O Kotlin é uma linguagem de programação moderna
+   e que permite ser integrado a outras tecnologias como o Spring.
+   
+   Em relação a integração de uma aplicação React com regras de negócio escritas em Kotlin, isso também é viável. O React é uma biblioteca JavaScript para construção de interfaces 
+   de usuário e pode ser integrado com outras tecnologias, como o Kotlin. Ao escrever as regras de negócio em Kotlin, é possível ter uma implementação que pode ser acessada pela aplicação React através de uma API.
+   
+- E, indo um pouco além, a aplicação desenvolvida em ReactJS pode ser convertida para a modalidade “app nativo” sem necessidade de reescrita ?
+
+R: Creio que não, a aplicação desenvolvida em ReactJS não pode ser convertida para uma aplicação nativa sem necessidade de reescrita. A tecnologia utilizada no ReactJS é direcionada ao desenvolvimento de aplicações web, 
+   e ao contrário das aplicações nativas, elas não possuem acesso a todas as funcionalidades do dispositivo, como câmera, GPS, etc. Para converter a aplicação ReactJS em uma aplicação nativa, 
+   seria necessário reescrever a aplicação usando as tecnologias nativas para cada plataforma, como Swift para iOS e Java para Android.
+ 
+
+  
+   
+   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
+Orientações da aplicação:
+
+- Link do projeto no GIT: https://github.com/Edrocha96/todoapp_react_and_spring-.git
 
 Aplicação configurada com banco de dados H2 o mesmo já está configurado no aplication.properties:
 url: jdbc:h2: mem:testdb
