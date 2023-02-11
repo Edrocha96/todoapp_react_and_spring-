@@ -20,11 +20,9 @@ R: A integração da aplicação Kotlin com web services desenvolvidos em Spring
 
 R: Creio que não, a aplicação desenvolvida em ReactJS não pode ser convertida para uma aplicação nativa sem necessidade de reescrita. A tecnologia utilizada no ReactJS é direcionada ao desenvolvimento de aplicações web, 
    e ao contrário das aplicações nativas, elas não possuem acesso a todas as funcionalidades do dispositivo, como câmera, GPS, etc. Para converter a aplicação ReactJS em uma aplicação nativa, 
-   seria necessário reescrever a aplicação usando as tecnologias nativas para cada plataforma, como Swift para iOS e Java para Android.
+   seria necessário reescrever a aplicação usando as tecnologias nativas para cada plataforma, como Swift para iOS e Java para Android. Ou utilizar o React Native, que permitem o desenvolvimento de aplicações nativas usando o React,
+   mas ainda assim é necessário realizar algumas adaptações na aplicação original.
  
-
-  
-   
    
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
 Orientações da aplicação:
@@ -32,6 +30,8 @@ Orientações da aplicação:
 - Link do projeto no GIT: https://github.com/Edrocha96/todoapp_react_and_spring-.git
 
 Aplicação configurada com banco de dados H2 o mesmo já está configurado no aplication.properties:
+Para acessar: http://localhost:8080/h2-console/
+
 url: jdbc:h2: mem:testdb
 driverClassName: org.h2.Driver
 username: sa
